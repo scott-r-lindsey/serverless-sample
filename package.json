@@ -6,9 +6,10 @@
   "dependencies": {
     "jest": "^24.8.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+  },
   "scripts": {
-    "test": "jest"
+    "test": "jest --coverage --coverageDirectory=output/coverage/jest"
   },
   "repository": {
     "type": "git",
@@ -19,5 +20,19 @@
   "bugs": {
     "url": "https://github.com/scott-r-lindsey/serverless-sample/issues"
   },
-  "homepage": "https://github.com/scott-r-lindsey/serverless-sample#readme"
+  "homepage": "https://github.com/scott-r-lindsey/serverless-sample#readme",
+  "jest": {
+    "name": "serverles-sample",
+    "jest": {
+      "verbose": true
+    },
+    "collectCoverage": true,
+    "collectCoverageFrom": [
+      "src/*.js"
+    ],
+    "coverageReporters": [
+      "text",
+      "html"
+    ]
+  }
 }

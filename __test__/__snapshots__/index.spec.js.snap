@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Sample Code Test Returns JSON with expected values 1`] = `
+Object {
+  "body": "{
+  \\"message\\": \\"Hello world!\\",
+  \\"details\\": \\"The sample code executed correctly xyz\\"
+}",
+  "statusCode": 200,
+}
+`;
