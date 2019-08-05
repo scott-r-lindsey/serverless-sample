@@ -1,0 +1,23 @@
+{
+  "name": "serverless-sample",
+  "version": "1.0.0",
+  "description": "",
+  "main": "handler.js",
+  "dependencies": {
+    "jest": "^24.8.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/scott-r-lindsey/serverless-sample.git"
+  },
+  "author": "Scott Lindsey",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/scott-r-lindsey/serverless-sample/issues"
+  },
+  "homepage": "https://github.com/scott-r-lindsey/serverless-sample#readme"
+}
