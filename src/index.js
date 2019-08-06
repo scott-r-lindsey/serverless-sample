@@ -12,7 +12,7 @@ exports.handler = async event => {
       {
         message: 'Hello world!',
         details: 'The sample code executed correctly',
-//        environment: process.env.environment,
+        environment: process.env.environment,
       },
       null,
       2

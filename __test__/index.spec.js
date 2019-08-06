@@ -1,7 +1,11 @@
 'use strict';
 
+
+//const {promisify} = require('util');
 const {handler} = require('../src/index');
 const {eventStub} = require('./stubs/eventHttpApiGateway.json');
+
+//const lambda = promisify(handler);
 
 describe('Sample Code Test', () => {
 
@@ -18,23 +22,19 @@ describe('Sample Code Test', () => {
     const event = eventStub;
     const context = {};
 
-    // run the test
-    const result = handler(event, context);
+    expect.assertions(1);
 
-    result.then(
-      (data) => {
+    const expectedBody = JSON.stringify({
+      message: 'Hello world!',
+      details: 'The sample code executed correctly',
+    }, null, 2);
 
-        console.log(JSON.parse(data.body));
 
-        expect(JSON.parse(data.body)).toEqual({
-            "message": "Hello world!",
-            "details": "The sample code executed correctly",
-            "environment": "local",
-        });
-        expect(data).toHaveProperty('statusCode', 200);
-        expect(data).toHaveProperty('body');
-
-      }
+    return handler(event, context).then(data =>
+      expect(data).toEqual({
+         "body": expectedBody,
+         "statusCode": 200,
+      })
     );
   });
 
