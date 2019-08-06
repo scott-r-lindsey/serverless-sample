@@ -12,7 +12,7 @@ jobs:
 
     steps:
       - setup_remote_docker:
-        docker_layer_caching: true
+          docker_layer_caching: true
       - checkout
 
       # Download and cache dependencies
@@ -22,19 +22,19 @@ jobs:
           # fallback to using the latest cache if no exact match is found
           - v1-dependencies-
 
-          - run:
-            name: Install Serverless CLI and dependencies
-            command: |
-              sudo npm i -g serverless
-              npm install
+      - run:
+        name: Install Serverless CLI and dependencies
+        command: |
+          sudo npm i -g serverless
+          npm install
 
       - save_cache:
-            paths:
-                - node_modules
-            key: v1-dependencies-
+        paths:
+          - node_modules
+        key: v1-dependencies-
 
       - run:
-          name: Run tests
-          command: npm test
+        name: Run tests
+        command: npm test
 
 
