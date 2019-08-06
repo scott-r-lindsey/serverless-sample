@@ -167,7 +167,8 @@ workflows:
         - middle-hold:
             type: approval
             requires:
-              - integration-qastg-test
+              - deploy-dev
+              - deploy-qa
 
             filters:
               tags:
@@ -178,6 +179,5 @@ workflows:
               - middle-hold
 
             filters:
-              branches:
-                tags:
-                  only: /.*/
+              tags:
+                only: /.*/
