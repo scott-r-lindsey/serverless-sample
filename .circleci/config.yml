@@ -68,20 +68,20 @@ workflows:
 
     # commits to random branches
     commit_test:
-        jobs:
+      jobs:
 
-          - build:
+        - build:
             filters:
               branches:
                 ignore: /^master$/
 
-          - deploy-dev:
-              requires:
-                - build
+        - deploy-dev:
+            requires:
+              - build
 
-              filters:
-                branches:
-                  ignore: /^master$/
+            filters:
+              branches:
+                ignore: /^master$/
 
 
     # merge to master
