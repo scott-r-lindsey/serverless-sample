@@ -123,7 +123,7 @@ workflows:
         - build:
             filters:
               branches:
-                only: development
+                only: master
 
         - deploy-dev:
             requires:
@@ -131,7 +131,7 @@ workflows:
 
             filters:
               branches:
-                only: development
+                only: master
 
 
     # tagging the repo x.x.x
