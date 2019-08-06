@@ -85,7 +85,7 @@ workflows:
 
 
     # merge to master
-    build_deploy_dev:
+#    build_deploy_dev:
 
     # tagging the repo x.x.x
     build_deploy_by_tag:
