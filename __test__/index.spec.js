@@ -13,21 +13,24 @@ describe('Sample Code Test', () => {
     // cleanup
   });
 
-
-  test('True is True', () => {
-    expect(true).toBeTruthy();
-  });
-
   test('Returns JSON with expected values', () => {
     const event = eventStub;
     const context = {};
 
+    // run the test
     const result = handler(event, context);
-    result.then(data => expect(data).toMatchSnapshot());
+
+    result.then(
+      (data) => {
+
+        expect(data).toHaveProperty('statusCode', 200);
+        expect(data).toHaveProperty('body');
+        expect(JSON.parse(data.body)).toEqual({
+            "message": "Hello world!",
+            "details": "The sample code executed correctly"
+        });
+      }
+    );
   });
 
-
 });
-
-
-

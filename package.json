@@ -23,9 +23,7 @@
   "homepage": "https://github.com/scott-r-lindsey/serverless-sample#readme",
   "jest": {
     "name": "serverles-sample",
-    "jest": {
-      "verbose": true
-    },
+    "verbose": true,
     "collectCoverage": true,
     "collectCoverageFrom": [
       "src/*.js"

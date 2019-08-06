@@ -1,6 +1,5 @@
 'use strict';
 
-
 exports.handler = async event => {
 
   if (true == false) {
@@ -12,7 +11,7 @@ exports.handler = async event => {
     body: JSON.stringify(
       {
         message: 'Hello world!',
-        details: 'The sample code executed correctly xyz',
+        details: 'The sample code executed correctly',
       },
       null,
       2
