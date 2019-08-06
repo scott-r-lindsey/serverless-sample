@@ -68,6 +68,9 @@ workflows:
                     branches:
                         ignore: /^master$/
             - deploy-dev:
+                requires:
+                  - build
+
                 filters:
                     branches:
                         ignore: /^master$/
