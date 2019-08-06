@@ -33,7 +33,7 @@ jobs:
       - persist_to_workspace:
           root: node_modules
           paths:
-            - *
+            - '*'
 
 
   deploy-dev:
