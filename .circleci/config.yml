@@ -15,12 +15,10 @@ jobs:
           docker_layer_caching: true
       - checkout
 
-      # Download and cache dependencies
-      - restore_cache:
-          keys:
-            - v1-dependencies-
-            # fallback to using the latest cache if no exact match is found
-            - v1-dependencies-
+      - run:
+          name: Setup node_modules as a workspace
+          command: |
+            mkdir -p node_modules
 
       - run:
           name: Install Serverless CLI and dependencies
@@ -28,13 +26,50 @@ jobs:
             sudo npm i -g serverless
             npm install
 
-      - save_cache:
-          paths:
-            - node_modules
-          key: v1-dependencies-
-
       - run:
           name: Run tests
           command: npm test
+
+      - persist_to_workspace:
+          root: node_modules
+          paths:
+            - *
+
+
+  deploy-dev:
+    <<: *nodejs-image
+
+    steps:
+      - setup_remote_docker:
+          docker_layer_caching: true
+      - checkout
+
+      # Attach a workspace so that we can access artifacts
+      - attach_workspace:
+          at: node_modules
+
+      - run:
+          name: 'yada yada'
+          command: |
+            ls -l node_modules
+
+
+
+
+# -----------------------------------------------------------------------------
+
+workflows:
+    version: 2
+
+    commit_test:
+        jobs:
+            - build:
+                filters:
+                    branches:
+                        ignore: /^master$/
+            - deploy-dev:
+                filters:
+                    branches:
+                        ignore: /^master$/
 
 
