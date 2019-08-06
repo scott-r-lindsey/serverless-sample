@@ -1,11 +1,7 @@
 'use strict';
 
-
-//const {promisify} = require('util');
 const {handler} = require('../src/index');
 const {eventStub} = require('./stubs/eventHttpApiGateway.json');
-
-//const lambda = promisify(handler);
 
 describe('Sample Code Test', () => {
 
@@ -27,6 +23,7 @@ describe('Sample Code Test', () => {
     const expectedBody = JSON.stringify({
       message: 'Hello world!',
       details: 'The sample code executed correctly',
+      environment: 'local',
     }, null, 2);
 
 
