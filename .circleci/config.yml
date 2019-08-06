@@ -35,7 +35,6 @@ jobs:
           paths:
             - '*'
 
-
   deploy-dev:
     <<: *nodejs-image
 
@@ -58,8 +57,49 @@ jobs:
           command: |
             sls deploy --stage dev
 
+  deploy-qa:
+    <<: *nodejs-image
 
+    steps:
+      - setup_remote_docker:
+          docker_layer_caching: true
+      - checkout
 
+      # Attach a workspace so that we can access artifacts
+      - attach_workspace:
+          at: node_modules
+
+      - run:
+          name: Install Serverless CLI and dependencies
+          command: |
+            sudo npm i -g serverless
+
+      - run:
+          name: Deploy to QA
+          command: |
+            sls deploy --stage qa
+
+  deploy-prod:
+    <<: *nodejs-image
+
+    steps:
+      - setup_remote_docker:
+          docker_layer_caching: true
+      - checkout
+
+      # Attach a workspace so that we can access artifacts
+      - attach_workspace:
+          at: node_modules
+
+      - run:
+          name: Install Serverless CLI and dependencies
+          command: |
+            sudo npm i -g serverless
+
+      - run:
+          name: Deploy to PROD
+          command: |
+            sls deploy --stage prod
 
 # -----------------------------------------------------------------------------
 
@@ -75,17 +115,24 @@ workflows:
               branches:
                 ignore: /^master$/
 
+
+    # merge to master
+    build_deploy_dev:
+      jobs:
+
+        - build:
+            filters:
+              branches:
+                only: development
+
         - deploy-dev:
             requires:
               - build
 
             filters:
               branches:
-                ignore: /^master$/
+                only: development
 
-
-    # merge to master
-#    build_deploy_dev:
 
     # tagging the repo x.x.x
     build_deploy_by_tag:
@@ -105,6 +152,32 @@ workflows:
 
             filters:
               branches:
-                ignore: /^master$/
+                tags:
+                  only: /.*/
 
+        - deploy-qa:
+            requires:
+              - build
 
+            filters:
+              branches:
+                tags:
+                  only: /.*/
+
+        - middle-hold:
+            type: approval
+            requires:
+              - integration-qastg-test
+
+            filters:
+              tags:
+                only: /.*/
+
+        - deploy-prod:
+            requires:
+              - middle-hold
+
+            filters:
+              branches:
+                tags:
+                  only: /.*/
