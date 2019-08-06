@@ -7,6 +7,7 @@ describe('Sample Code Test', () => {
 
   beforeAll(() => {
     // we can do some setup here
+    process.env.environment = 'local';
   });
 
   afterEach(() => {
@@ -23,12 +24,16 @@ describe('Sample Code Test', () => {
     result.then(
       (data) => {
 
-        expect(data).toHaveProperty('statusCode', 200);
-        expect(data).toHaveProperty('body');
+        console.log(JSON.parse(data.body));
+
         expect(JSON.parse(data.body)).toEqual({
             "message": "Hello world!",
-            "details": "The sample code executed correctly"
+            "details": "The sample code executed correctly",
+            "environment": "local",
         });
+        expect(data).toHaveProperty('statusCode', 200);
+        expect(data).toHaveProperty('body');
+
       }
     );
   });
