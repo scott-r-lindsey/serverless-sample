@@ -7,6 +7,7 @@ describe('Sample Code Test', () => {
 
   beforeAll(() => {
     // we can do some setup here
+    process.env.environment = 'local';
   });
 
   afterEach(() => {
@@ -17,19 +18,20 @@ describe('Sample Code Test', () => {
     const event = eventStub;
     const context = {};
 
-    // run the test
-    const result = handler(event, context);
+    expect.assertions(1);
 
-    result.then(
-      (data) => {
+    const expectedBody = JSON.stringify({
+      message: 'Hello world!',
+      details: 'The sample code executed correctly',
+      environment: 'local',
+    }, null, 2);
 
-        expect(data).toHaveProperty('statusCode', 200);
-        expect(data).toHaveProperty('body');
-        expect(JSON.parse(data.body)).toEqual({
-            "message": "Hello world!",
-            "details": "The sample code executed correctly"
-        });
-      }
+
+    return handler(event, context).then(data =>
+      expect(data).toEqual({
+         "body": expectedBody,
+         "statusCode": 200,
+      })
     );
   });
 
