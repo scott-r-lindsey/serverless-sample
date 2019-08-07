@@ -8,3 +8,6 @@ jspm_packages
 # test output
 /coverage/*
 /output/*
+
+# eslint
+v8-compile*

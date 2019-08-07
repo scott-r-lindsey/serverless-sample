@@ -7,9 +7,12 @@
     "jest": "^24.8.0"
   },
   "devDependencies": {
+    "eslint": "^6.1.0",
+    "eslint-plugin-import": "^2.18.2"
   },
   "scripts": {
-    "test": "jest --coverage --coverageDirectory=output/coverage/jest"
+    "test": "jest --coverage --coverageDirectory=output/coverage/jest",
+    "eslint": "./node_modules/.bin/eslint"
   },
   "repository": {
     "type": "git",

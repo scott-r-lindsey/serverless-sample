@@ -1,8 +1,6 @@
-'use strict';
-
-exports.handler = async event => {
-
-  if (true == false) {
+exports.handler = async () => {
+  const test = false;
+  if (true == test) {
     console.log('cats and dogs, living together');
   }
 
