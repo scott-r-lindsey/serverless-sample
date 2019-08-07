@@ -2,7 +2,7 @@ version: 2
 
 nodejs-image: &nodejs-image
   docker:
-    - image: circleci/node:10.16
+    - image: patrickp78/sls
 
 # -----------------------------------------------------------------------------
 
@@ -23,7 +23,6 @@ jobs:
       - run:
           name: Install Serverless CLI and dependencies
           command: |
-            sudo npm i -g serverless
             npm install
 
       - run:
@@ -48,11 +47,6 @@ jobs:
           at: node_modules
 
       - run:
-          name: Install Serverless CLI and dependencies
-          command: |
-            sudo npm i -g serverless
-
-      - run:
           name: Deploy to DEV
           command: |
             sls deploy --stage dev
@@ -70,11 +64,6 @@ jobs:
           at: node_modules
 
       - run:
-          name: Install Serverless CLI and dependencies
-          command: |
-            sudo npm i -g serverless
-
-      - run:
           name: Deploy to QA
           command: |
             sls deploy --stage qa
@@ -90,11 +79,6 @@ jobs:
       # Attach a workspace so that we can access artifacts
       - attach_workspace:
           at: node_modules
-
-      - run:
-          name: Install Serverless CLI and dependencies
-          command: |
-            sudo npm i -g serverless
 
       - run:
           name: Deploy to PROD
