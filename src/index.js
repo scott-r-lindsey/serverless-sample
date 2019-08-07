@@ -13,6 +13,7 @@ exports.handler = async event => {
         message: 'Hello world!',
         details: 'The sample code executed correctly',
         environment: process.env.environment,
+        foo: 'some new value',
       },
       null,
       2
