@@ -24,6 +24,7 @@ describe('Sample Code Test', () => {
       message: 'Hello world!',
       details: 'The sample code executed correctly',
       environment: 'local',
+      foo: 'some new value',
     }, null, 2);
 
 
