@@ -1,3 +1,5 @@
+'use strict';
+
 exports.handler = async () => {
   const test = false;
   if (true == test) {
