@@ -1,4 +1,4 @@
-exports.handler = async (event) => {
+exports.handler = async () => {
   const test = false;
   if (true == test) {
     console.log('cats and dogs, living together');
