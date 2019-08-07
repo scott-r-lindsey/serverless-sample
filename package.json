@@ -17,7 +17,7 @@
     "eslint": "./node_modules/.bin/eslint ./src/**",
     "eslint-fix": "./node_modules/.bin/eslint --fix ./src/**",
     "validate": "npm-run-all --parallel eslint test",
-    "prepush": "npm run validate"
+    "precommit": "npm run validate"
   },
   "repository": {
     "type": "git",
