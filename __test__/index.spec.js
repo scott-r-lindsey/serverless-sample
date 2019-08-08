@@ -21,6 +21,7 @@ describe('Sample Code Test', () => {
     expect.assertions(1);
 
     const expectedBody = JSON.stringify({
+      foo: "bar",
       message: 'Hello world!',
       details: 'The sample code executed correctly',
       environment: 'local',
